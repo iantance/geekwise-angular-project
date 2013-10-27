@@ -1,0 +1,82 @@
+
+
+.table-hover tbody tr:hover > td,
+.table-hover tbody tr:hover > th {
+  background-color: #c3d324;
+}
+
+h1{
+	color:#31c5bc;
+}
+
+.editheader h1{
+	float:left;
+}
+
+.editheader a{
+	float:left;
+	margin: 2% 0 0 15%;
+}
+
+.btn{
+	background-color: #c3d324;
+	color: #FFF;
+	text-shadow: none;
+	background-image: none;
+	background-image: none;
+	background-image: none;
+	background-repeat: repeat-x;
+	border: none;
+	border-radius: 4px;
+	box-shadow: none;
+	-webkit-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+
+}
+
+.btn:hover, .btn:focus {
+	color: #FFF;
+	background-color: #727c15;
+	text-decoration: none;
+	background-position: 0 -15px;
+	-webkit-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+}
+
+.btn[disabled] {
+	color: #FFF;
+	background-color: #c3d324;
+	opacity:.5;
+}
+
+.col-10{
+	width: 80%%;
+}
+
+.form-horizontal{
+	margin-top: 25px;
+}
+
+.form-horizontal label{
+	font-weight: bold;
+}
+
+.form-horizontal .form-group{
+	margin: 2px 0 2px 0;
+}
+
+.form-horizontal .control-label{
+	text-align: left;
+	width:10%;
+}
+
+.editform .btn.delete{
+	margin: 1% 0% 0% 15%;
+	float: left;
+}
+
+.editform .btn.save{
+	margin: 1% 67% 0% 0%;
+	float: right;
+}
+

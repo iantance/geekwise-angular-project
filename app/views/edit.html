@@ -1,0 +1,37 @@
+<header class = "editheader">
+	<h1 ng-show = "editView">Edit User</h1>
+	<h1 ng-show = "!editView">Add User</h1>
+	<a href="/#/"><img src="images/glyphicons_210_left_arrow.png"></a>
+</header>
+<div class = "clearfix"></div>
+<form name = "editForm" class = "form-horizontal editform" novalidate>
+
+	<div class="form-group">
+    	<label for="lastName" class="control-label">Last Name</label>
+      		<input name = "lastName" ng-model = "user.lastName" type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+      		<span class = "error" ng-show = "editForm.lastName.$error.required">Last name required</span>
+	</div>
+
+	<div class="form-group">
+    	<label for="firstName" class="control-label">First Name</label>
+      		<input name = "firstName" ng-model = "user.firstName" type="text" class="form-control" id="firstName" placeholder="First Name" required>
+      		<span class = "error" ng-show = "editForm.firstName.$error.required">First name required</span>
+	</div>
+
+	<div class="form-group">
+    	<label for="nickName" class="control-label">Nickname</label>
+      		<input name = "nickName" ng-model = "user.nickName" type="text" class="form-control" id="nickName" placeholder="Nickname" required>
+      		<span class = "error" ng-show = "editForm.nickName.$error.required">Nickname required</span>
+	</div>
+
+	<div class="form-group">
+    	<label for="email" class="control-label">email</label>
+      		<input name = "email" ng-model = "user.email" type="email" class="form-control" id="email" placeholder="email" required>
+      		<span class = "error" ng-show = "editForm.email.$error.required || editForm.email.$error.email">valid email required</span>
+	</div>
+	<div class="form-group">
+		<button ng-hide = "!editView" class="btn btn-default delete" ng-click = "deleteUser()">Delete User</button>
+		<button class="btn btn-default save" ng-click = "save()" ng-disabled = "editForm.$invalid">Save</button>
+	</div>
+
+</form>
