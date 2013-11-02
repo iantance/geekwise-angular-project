@@ -10,7 +10,7 @@ angular.module('myappApp')
 				$scope.space = " ";
 				$scope.tempTeam = $scope.team;
 
-				$scope.teamToIds();
+
 
 				$scope.teamToIds = function(){
 					$scope.team = [];
@@ -19,6 +19,8 @@ angular.module('myappApp')
 	  				}
 				};
 
+				$scope.teamToIds();
+				
 				$scope.addToTeam = function(member){
 	  			if (member && $scope.tempTeam.indexOf(member) === -1){
 					$scope.tempTeam.push(member);
