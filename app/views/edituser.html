@@ -1,0 +1,38 @@
+<div ng-include = "'navbar.html'"></div>
+<header class = "editheader">
+	<h1 ng-show = "editView">Edit User</h1>
+	<h1 ng-show = "!editView">Add User</h1>
+	<a href="/#/users"><img src="images/glyphicons_210_left_arrow.png"></a>
+</header>
+<div class = "clearfix"></div>
+<form name = "editForm" class = "form-horizontal editform" novalidate>
+
+	<div class="form-group">
+    	<label for="lastName" class="control-label col-lg-12 col-lg-12">Last Name</label>
+      		<input name = "lastName" ng-model = "user.lastName" type="text" class="form-control col-lg-3" id="lastName" placeholder="Last Name" required>
+      		<span class = "error col-lg-9" ng-show = "editForm.lastName.$error.required">Last name required</span>
+	</div>
+
+	<div class="form-group">
+    	<label for="firstName" class="control-label col-lg-12">First Name</label>
+      		<input name = "firstName" ng-model = "user.firstName" type="text" class="form-control col-lg-3" id="firstName" placeholder="First Name" required>
+      		<span class = "error col-lg-9" ng-show = "editForm.firstName.$error.required">First name required</span>
+	</div>
+
+	<div class="form-group">
+    	<label for="nickName" class="control-label col-lg-12">Nickname</label>
+      		<input name = "nickName" ng-model = "user.nickName" type="text" class="form-control col-lg-3" id="nickName" placeholder="Nickname" required>
+      		<span class = "error col-lg-9" ng-show = "editForm.nickName.$error.required">Nickname required</span>
+	</div>
+
+	<div class="form-group">
+    	<label for="email" class="control-label col-lg-12">email</label>
+      		<input name = "email" ng-model = "user.email" type="email" class="form-control col-lg-3" id="email" placeholder="email" required>
+      		<span class = "error col-lg-9" ng-show = "editForm.email.$error.required || editForm.email.$error.email">valid email required</span>
+	</div>
+	<div class="form-group">
+		<button ng-hide = "!editView" class="btn btn-default delete" ng-click = "deleteUser(user)">Delete User</button>
+		<button class="btn btn-default save" ng-click = "save(user)" ng-disabled = "editForm.$invalid">Save</button>
+	</div>
+
+</form>

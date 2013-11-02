@@ -1,0 +1,37 @@
+<div ng-include = "'navbar.html'"></div>
+<header class = "editheader">
+	<h1 ng-show = "editView">Edit Project</h1>
+	<h1 ng-show = "!editView">Add Project</h1>
+	<a href="/#/projects"><img src="images/glyphicons_210_left_arrow.png"></a>
+</header>
+<div class = "clearfix"></div>
+<form name = "editForm" class = "form-horizontal editform projectform" novalidate>
+
+	<div class="form-group">
+    	<label for="title" class="control-label col-lg-12">title</label>
+      		<input name = "title" ng-model = "project.title" type="text" class="form-control col-lg-4" id="title" placeholder="title" required>
+      		<span class = "error col-lg-8" ng-show = "editForm.title.$error.required">Project title required</span>
+	</div>
+
+	<div class="form-group">
+    	<label for="description" class="control-label col-lg-12">description</label>
+      		<textarea name = "description" ng-model = "project.description" type="textarea" rows ="5" class="form-control col-lg-4" id="description" placeholder="description" required></textarea>
+      		<span class = "error col-lg-8" ng-show = "editForm.description.$error.required">Project description required</span>
+	</div>
+
+	<div class="form-group">
+    	<label for="status" class="control-label col-lg-12">status</label>
+      		<input name = "status" ng-model = "project.status" type="text" class="form-control col-lg-4" id="status" placeholder="status" required>
+      		<span class = "error col-lg-8" ng-show = "editForm.status.$error.required">Project status required</span>
+	</div>
+		<label class="control-label col-lg-12">team</label>
+	<div class="form-group teamlist">
+		<div teamlist team="project.team" users="users"></div>
+	</div>
+	<div class="form-group">
+		<button ng-hide = "!editView" class="btn btn-default delete" ng-click = "deleteProject(project)">Delete Project</button>
+		<button class="btn btn-default save" ng-click = "save(project)" ng-disabled = "editForm.$invalid">Save</button>
+	</div>
+
+
+</form>

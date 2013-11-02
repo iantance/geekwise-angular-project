@@ -1,0 +1,28 @@
+<div ng-include = "'navbar.html'"></div>
+<h1>Manage Users</h1>
+
+<form class = "form-horizontal">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search" ng-model="query">
+  </div>
+</form>
+<table  class="table table-hover">
+	<thead>
+		<tr>
+			<th><a tooltip="add user" href="/#/users/add"><img src="images/glyphicons_190_circle_plus.png"></a></th>
+			<th>Last Name</th>
+			<th>First Name</th>
+			<th>Nickname</th>
+			<th>email</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat = "user in users | filter:searchSort(query) | orderBy:'lastName'">
+			<td><a tooltip="edit user" href="/#/users/edit/{{user._id}}"><img src="images/glyphicons_150_edit.png"></a></td>
+			<td>{{user.lastName}}</td>
+			<td>{{user.firstName}}</td>
+			<td>{{user.nickName}}</td>
+			<td>{{user.email}}</td>
+		</tr>
+	</tbody>
+</table>

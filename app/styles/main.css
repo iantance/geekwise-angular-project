@@ -1,4 +1,37 @@
+.nav, .pagination, .carousel a { cursor: pointer; }
 
+.container .jumbotron{
+	color:#31c5bc;
+	background-color: #efeedb;
+	border-radius: 0;
+}
+
+.container .navbar{
+	background-color: #efeedb;
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+.container .navbar a, .navbar-default .navbar-nav>li>a {
+	color:#31c5bc;
+}
+
+.container .navbar a:hover, .navbar-default .navbar-nav>li>a:hover{
+	color:white;
+	background-color: #727c15;
+}
+
+.maincontent{
+	padding: 3% 0% 0 10%;
+}
+
+.maincontent p{
+	font-size: 1.8em;
+}
+
+.maincontent a{
+	color: #31c5bc;
+}
 
 .table-hover tbody tr:hover > td,
 .table-hover tbody tr:hover > th {
@@ -49,13 +82,20 @@ h1{
 	opacity:.5;
 }
 
-.col-10{
-	width: 80%%;
+
+
+input[type = "text"].form-control, input[type = "email"].form-control, textarea.form-control{
+	width:25%;
 }
 
-.form-horizontal{
-	margin-top: 25px;
+.projectform input[type = "text"].form-control, .projectform input[type = "email"].form-control,  .projectform textarea.form-control{
+	width:33%;
 }
+
+.form-group span{
+	top:8px;
+}
+
 
 .form-horizontal label{
 	font-weight: bold;
@@ -67,16 +107,60 @@ h1{
 
 .form-horizontal .control-label{
 	text-align: left;
-	width:10%;
+	margin-bottom: 5px;
+	right: 15px;
 }
 
 .editform .btn.delete{
-	margin: 1% 0% 0% 15%;
+	margin: 1% 0% 0% 10%;
 	float: left;
 }
 
 .editform .btn.save{
+	margin: 1% 75% 0% 0%;
+	float: right;
+}
+
+.projectform .btn.delete{
+	margin: 1% 0% 0% 17%;
+	float: left;
+}
+
+.projectform .btn.save{
 	margin: 1% 67% 0% 0%;
 	float: right;
+}
+
+.teamlist{
+	width:33%;
+	border: solid 1px #31c5bc;
+	border-radius: 8px;
+}
+
+.teamlist button.btn.add{
+	margin: 4px 0px 0px 25px;
+}
+
+.teamlist button.btn.remove{
+	margin: 5px 0px 4px 0px;
+}
+
+select.form-control{
+	width:50%;
+	float:left;
+	margin: 5px 0px 0px 25px;
+}
+
+.teamlist ul{
+	margin: 20px 0px 0px 17px;
+	list-style: none;
+}
+
+.teamlist ul li{
+	margin: 0px 0px 0px 0px;
+}
+
+.teamlist input[type="checkbox"]{
+	margin: 0px 5px 0px 0px;
 }
 

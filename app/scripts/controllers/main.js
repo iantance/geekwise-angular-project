@@ -3,27 +3,23 @@
 
 
 angular.module('myappApp')
-  .controller('MainCtrl', function ($scope, $http) {
-    $http({
-    	method: 'GET',
-    	url: 'http://geekwise-angularjs.herokuapp.com/iannance/users'
-    }).success(function (data, status, headers, config){
-    	$scope.users = data;
-    }).error(function (data, status, headers, config){
-    	console.warn("couldn't retreive users", status);
-    });
+  .controller('MainCtrl', function ($scope, $q, Users, Projects) {
 
-    $scope.query = '';
+    var getPromise = Users.get('');
+    getPromise
+        .then(function(data){
+            $scope.users_count = data.length;
+        },function(){
+            console.log(reason);
+        });
 
-    $scope.searchSort = function (query){
-    	return function (user){
-            return user.lastName.toLowerCase().indexOf(query.toLowerCase()) != -1 ||
-                    user.firstName.toLowerCase().indexOf(query.toLowerCase()) != -1 ||
-                    user.nickName.toLowerCase().indexOf(query.toLowerCase()) != -1 ||
-                    user.email.toLowerCase().indexOf(query.toLowerCase()) != -1
-        }
-    }
+    var getPromise = Projects.get('');
+    getPromise
+        .then(function(data){
+            $scope.projects_count = data.length;
+        }, function(){
+            console.log(reason);
+        })
 
   });
-
 
