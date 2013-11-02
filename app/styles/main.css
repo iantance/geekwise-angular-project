@@ -67,6 +67,15 @@ h1{
 
 }
 
+.btn:focus {
+	color: #FFF;
+	background-color: #c3d324;
+	text-decoration: none;
+	background-position: 0 -15px;
+	-webkit-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+}
+
 .btn:hover {
 	color: #FFF;
 	background-color: #727c15;
@@ -76,14 +85,6 @@ h1{
 	transition: all 0.1s ease-in-out;
 }
 
-.btn:focus {
-	color: #FFF;
-	background-color: #c3d324;
-	text-decoration: none;
-	background-position: 0 -15px;
-	-webkit-transition: all 0.1s ease-in-out;
-	transition: all 0.1s ease-in-out;
-}
 
 .btn[disabled] {
 	color: #FFF;
