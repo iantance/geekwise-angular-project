@@ -2,7 +2,8 @@
 <header class = "editheader">
 	<h1 ng-show = "editView">Edit Project</h1>
 	<h1 ng-show = "!editView">Add Project</h1>
-	<a href="/#/projects"><img src="images/glyphicons_210_left_arrow.png"></a>
+	<a tooltip = "back to projects" href="/#/projects"><img src="images/glyphicons_210_left_arrow.png"></a>
+	<a tooltip="view project conversations" href="/#/projects/{{project._id}}/conversations"><img src="images/glyphicons_309_comments.png"></a>
 </header>
 <div class = "clearfix"></div>
 <form name = "editForm" class = "form-horizontal editform projectform" novalidate>
@@ -20,14 +21,22 @@
 	</div>
 
 	<div class="form-group">
+    	<label for="dueDate" class="control-label col-lg-12">Due date</label>
+      		<input ui-date="{ dateFormat: 'M d, yy', minDate:0 }" name = "dueDate" ng-model = "project.dueDate" class="form-control col-lg-4" id="dueDate" dateformatter required>
+      		<span class = "error col-lg-8" ng-show = "editForm.dueDate.$error.required">Project due date required</span>
+	</div>
+
+	<div class="form-group">
     	<label for="status" class="control-label col-lg-12">status</label>
       		<input name = "status" ng-model = "project.status" type="text" class="form-control col-lg-4" id="status" placeholder="status" required>
       		<span class = "error col-lg-8" ng-show = "editForm.status.$error.required">Project status required</span>
 	</div>
+
 		<label class="control-label col-lg-12">team</label>
-	<div class="form-group teamlist">
-		<div teamlist team="project.team" users="users"></div>
-	</div>
+		<div class="form-group teamlist">
+			<div teamlist team="project.team" users="users"></div>
+		</div>
+
 	<div class="form-group">
 		<button ng-hide = "!editView" class="btn btn-default delete" ng-click = "deleteProject(project)">Delete Project</button>
 		<button class="btn btn-default save" ng-click = "save(project)" ng-disabled = "editForm.$invalid">Save</button>

@@ -8,6 +8,7 @@
     $scope.editView = true;
 
     $scope.save = function(project){
+        console.log(project);
 
         var putPromise = Projects.put(project);
 
@@ -18,20 +19,6 @@
             console.log(reason);
         })
 
-        // $http({
-        //     method: "PUT",
-        //     url: 'http://geekwise-angularjs.herokuapp.com/iannance/users/' + $scope.user._id,
-        //     data: {
-        //         firstName: $scope.user.firstName,
-        //         lastName: $scope.user.lastName,
-        //         nickName: $scope.user.nickName,
-        //         email: $scope.user.email
-        //     }
-        // }).success(function (data,status,headers,config){
-        //     $location.path('/');
-        // }).error(function (data,status, headers, config){
-        //     console.warn("could not update user", status);
-        // });
     }
 
     $scope.deleteProject = function(project){
@@ -45,14 +32,6 @@
             console.log(reason);
         })
 
-        // $http({
-        //     method: "DELETE",
-        //     url: 'http://geekwise-angularjs.herokuapp.com/iannance/users/' + $scope.user._id,
-        // }).success(function (data, status, headers, config){
-        //     $location.path('/');
-        // }).error(function (data, status, headers, config){
-        //     console.warn("could not delete user", status);
-        // });
     }
 
 

@@ -12,8 +12,10 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
         <!-- <link rel="stylesheet" href="styles/bootstrap.css"> -->
+        <link rel="stylesheet" href="styles/bootstrap.min.css">
+        <link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.css"/>
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
 </head>
@@ -42,7 +44,9 @@
     </script>
 
     <script src="bower_components/jquery/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-date/src/date.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 
         <!-- build:js scripts/plugins.js -->
@@ -70,6 +74,7 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/convo.js"></script>
         <script src="scripts/controllers/users.js"></script>
         <script src="scripts/controllers/projects.js"></script>
         <script src="scripts/controllers/edituser.js"></script>
@@ -78,7 +83,10 @@
         <script src="scripts/controllers/editproject.js"></script>
         <script src="scripts/services/users.js"></script>
         <script src="scripts/services/projects.js"></script>
-        <script src="directives/directives.js"></script>
+        <script src="scripts/services/messages.js"></script>
+        <script src="scripts/services/conversations.js"></script>
+        <script src="directives/teamlist.js"></script>
+        <script src="directives/dateformatter.js"></script>
         <!-- endbuild -->
 </body>
 </html>

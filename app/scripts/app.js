@@ -4,7 +4,8 @@ angular.module('myappApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ui.date'
 ])
   .config(function ($routeProvider, $locationProvider) {
 
@@ -34,13 +35,12 @@ angular.module('myappApp', [
         controller: "AddProjectCtrl",
         resolve: {
                 users: function(Users, $q) {
-                    // see: https://groups.google.com/forum/?fromgroups=#!topic/angular/DGf7yyD4Oc4
                     var deferred = $q.defer();
                     Users.get('')
                     .then(function(data) {
                         deferred.resolve(data); 
                     }, function(errorData) {
-                        deferred.reject(); // you could optionally pass error data here
+                        deferred.reject(); 
                     });
                     return deferred.promise;
                     }
@@ -61,17 +61,20 @@ angular.module('myappApp', [
                   return deferred.promise;
                 },
                 users: function(Users, $q) {
-                  // see: https://groups.google.com/forum/?fromgroups=#!topic/angular/DGf7yyD4Oc4
                   var deferred = $q.defer();
                   Users.get('')
                   .then(function(data) {
                     deferred.resolve(data); 
                   }, function(errorData) {
-                    deferred.reject(); // you could optionally pass error data here
+                    deferred.reject(); 
                   });
                   return deferred.promise;
                 }
               }
+      })
+      .when('/projects/:projectId/conversations',{
+        templateUrl:"views/conversations.html",
+        controller:"ConvoCtrl"
       })
       .otherwise({
         redirectTo: '/'

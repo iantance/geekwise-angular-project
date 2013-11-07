@@ -31,8 +31,48 @@
 		            data: {
 			            title :  project.title,
 			            description : project.description,
+			            dueDate: project.dueDate,
 			            status : project.status,
 			            team : project.team
+		            }
+               	}).success(function (data, status, headers, config){
+            		defer.resolve(data);
+        		}).error(function (data,status,headers,config){
+            		defer.reject("could not add project");
+        		});
+
+ 				return defer.promise;
+ 			},
+
+ 			postConvo: function(conversation, projectId){
+
+ 				var defer = $q.defer();
+
+ 				$http({
+		            method: "POST",
+		            url: projectsUrl+ "/" + projectId + "/conversations",
+		            data: {
+			            subject: conversation.subject
+		            }
+               	}).success(function (data, status, headers, config){
+            		defer.resolve(data);
+        		}).error(function (data,status,headers,config){
+            		defer.reject("could not add project");
+        		});
+
+ 				return defer.promise;
+ 			},
+
+ 			postMessage: function(messages, projectId, convoId){
+
+ 				var defer = $q.defer();
+
+ 				$http({
+		            method: "POST",
+		            url: projectsUrl+ "/" + projectId + "/conversations/" + convoId + "/messages",
+		            data: {
+			            message: messages.message,
+			            user:messages.user._id
 		            }
                	}).success(function (data, status, headers, config){
             		defer.resolve(data);
@@ -53,6 +93,7 @@
 		            data: {
 			            title :  project.title,
 			            description : project.description,
+			            dueDate: project.dueDate,
 			            status : project.status,
 			            team : project.team
 		            }

@@ -13,18 +13,18 @@
 			<th>Project Title</th>
 			<th>Description</th>
 			<th>Status</th>
-			<th>Team</th>
+			<th>Due date</th>
 			<th>Conversations</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat = "project in projects | filter:searchSort(query) | orderBy:'title'">
+		<tr ng-repeat = "project in projects | filter:searchSort(query) | orderBy:'dueDate'">
 			<td><a tooltip="edit project" href="/#/projects/edit/{{project._id}}"><img src="images/glyphicons_150_edit.png"></a></td>
 			<td>{{project.title}}</td>
 			<td>{{project.description}}</td>
 			<td>{{project.status}}</td>
-			<td>{{project.team.length}} members</td>
-			<td>{{project.conversations.length}} conversations</td>
+			<td>{{project.dueDate | date:'mediumDate'}}</td>
+			<td><a tooltip= "view conversations" href = "/#/projects/{{project._id}}/conversations">{{project.conversations.length}} conversations</a></td>
 		</tr>
 	</tbody>
 </table>
