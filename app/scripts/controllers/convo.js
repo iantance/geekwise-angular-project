@@ -19,14 +19,6 @@ angular.module('myappApp')
             console.log(reason);
         });
 
-    var getPromise = Users.get('');
-    getPromise
-        .then(function(data){
-            $scope.users = data;
-        }, function(){
-            console.log(reason);
-        });
-
     $scope.emptyConvo = $scope.project.conversations.length === 0;
     $scope.newConversation = {
         subject:"",
