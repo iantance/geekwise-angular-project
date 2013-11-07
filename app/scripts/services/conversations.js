@@ -2,7 +2,7 @@
  angular.module('myappApp')
  	.factory("Conversations", function($http, $q, AppConfigurations){
 
- 		var conversationsUrl = AppConfigurations.baseUrl + "/conversations" 
+ 		var conversationsUrl = AppConfigurations.baseUrl + "/conversations"; 
 
  		return{
 
