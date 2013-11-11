@@ -8,8 +8,10 @@ angular.module('myappApp')
     $scope.users = [];
     $scope.space =' ';
     $scope.emptyConvo = true;
-    $scope.subject = "";
+    $scope.editsubject = "";
+    $scope.editmessage = "";
     $scope.editconvo = [];
+    $scope.messageedit = [];
     var getPromise = Projects.get($routeParams.projectId);
     getPromise
         .then(function(data){
@@ -28,18 +30,25 @@ angular.module('myappApp')
         }
     };
 
-    $scope.loggit = function(i){
-        console.log(i);
-    }
 
     $scope.editSubject = function(conversation, i){
         $scope.editconvo[i] = true;
-        $scope.subject = conversation.subject;
+        $scope.editsubject = conversation.subject;
     }
 
     $scope.cancelEdit = function(conversation, i){
         $scope.editconvo[i] = false;
-        conversation.subject = $scope.subject;
+        conversation.subject = $scope.editsubject;
+    }
+
+    $scope.openEditMessage = function(message,i){
+        $scope.messageedit[i] = !$scope.messageedit[i];
+        $scope.editmessage = message.message;
+    }
+
+    $scope.cancelEditMessage = function(message,i){
+        $scope.messageedit[i] = !$scope.messageedit[i];
+        message.message = $scope.editmessage;
     }
 
     $scope.addConversation = function (conversation, projectId){

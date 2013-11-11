@@ -268,7 +268,30 @@ span.span-right{
 	border-radius: 5px;
 	padding:3px;
 	width:75%;
+	overflow: hidden;
+	opacity:1;
+/*	-webkit-transition: opacity ease-in-out 1s;
+	transition: opacity ease-in-out 1s;*/
+
 }
+
+/*.addconvo.ng-enter{
+	opacity:0;
+}
+
+.addconvo.ng-enter-active{
+	opacity:1;
+}
+
+.addconvo.ng-leave{
+	opacity:1;
+}
+
+.addconvo.ng-leave-active{
+	opacity:0;
+}*/
+
+
 .btn.showConvo{
 	margin-top: 5px;
 }
@@ -343,5 +366,10 @@ span.span-right{
 .ui-widget-content .ui-datepicker-current-day a, .ui-widget-content .ui-datepicker-today a{
 	background-color: #727c15;
 	color:#FFF;	
+}
+
+.closed{
+	height:0;
+	visibility: hidden;
 }
 

@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('myappApp', [
+  'ngRoute',
   'ngCookies',
   'ngResource',
   'ngSanitize',
   'ui.bootstrap',
-  'ui.date'
+  'ui.date',
+  'ngAnimate'
 ])
   .config(function ($routeProvider, $locationProvider) {
 
@@ -80,6 +82,41 @@ angular.module('myappApp', [
         redirectTo: '/'
       });
   });
+
+angular.module("myappApp").animation(".slide",function(){
+    return{
+      enter:function(element, done){
+        TweenMax.from(element, 0.5,{height:0, onComplete:done})
+      },
+      leave:function(element, done){
+        TweenMax.to(element, 0.5,{height:0, onComplete:done})
+      },
+      addClass:function(element, className, done){
+        if (className == "closed"){
+          var h = element.height();
+          TweenMax.fromTo(element, 0.5,{height:h},{height:0, onComplete:done, clearProps:"height"})
+        }
+       },
+      removeClass:function(element, className, done){
+        if (className == "closed"){
+          element.removeClass("closed");
+          var h = element.height();
+          TweenMax.fromTo(element, 0.5,{height:0},{height:h, onComplete:done, clearProps:"height"})
+        }
+       }
+    }
+});
+
+// angular.module("myappApp").animation(".slide2",function(){
+//     return{
+//       removeClass:function(element, "closed", done){
+//         TweenMax.from(element, 0.5,{height:0, onComplete:done})
+//       },
+//       addClass:function(element, "closed", done){
+//         TweenMax.to(element, 0.5,{height:0, onComplete:done})
+//       }
+//     }
+// });
 
  angular.module("myappApp").value("AppConfigurations", {
   baseUrl: 'http://geekwise-angularjs.herokuapp.com/iannance'
