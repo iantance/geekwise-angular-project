@@ -1,6 +1,6 @@
 
  angular.module('myappApp')
- 	.factory("Conversations", function($http, $q, AppConfigurations){
+ 	.factory("Conversations", function($http, $q, AppConfigurations, Projects){
 
  		var conversationsUrl = AppConfigurations.baseUrl + "/conversations"; 
 
@@ -17,6 +17,7 @@
 			            subject:conversation.subject
 		            }
 				}).success(function (data,status,headers,config){
+					Projects.clearCache();
 					defer.resolve(data);
 				}).error(function (data,status, headers, config){
 					defer.reject("could not edit project");

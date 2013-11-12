@@ -22,6 +22,7 @@ angular.module('myappApp')
         var postPromise = Projects.post(project)
 
         postPromise.then(function(data) {
+            console.log()
             $location.path('/projects');
         }, function(reason){
             console.log(reason);

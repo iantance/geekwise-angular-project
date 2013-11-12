@@ -1,10 +1,14 @@
 
  angular.module('myappApp')
- 	.factory("Projects", function($http, $q, AppConfigurations){
+ 	.factory("Projects", function($http, $q, AppConfigurations, $cacheFactory){
 
- 		var projectsUrl = AppConfigurations.baseUrl + "/projects" 
+ 		var projectsUrl = AppConfigurations.baseUrl + "/projects";
+ 		var $httpDefaultCache = $cacheFactory.get('$http');  
 
  		return{
+ 			clearCache: function(){
+ 				$httpDefaultCache.removeAll();
+ 			},
  			get: function(projectId){
 
  				var defer = $q.defer();
@@ -12,7 +16,7 @@
  				$http({
  					method: 'GET',
     				url: projectId ? projectsUrl + '/' + projectId : projectsUrl,
-    				// cache: true
+    				cache: true
     			}).success(function (data){
     				defer.resolve(data);
     			}).error(function (data, status, headers, config){
@@ -36,6 +40,7 @@
 			            team : project.team
 		            }
                	}).success(function (data, status, headers, config){
+               		$httpDefaultCache.removeAll();
             		defer.resolve(data);
         		}).error(function (data,status,headers,config){
             		defer.reject("could not add project");
@@ -56,6 +61,7 @@
 		            }
                	}).success(function (data, status, headers, config){
             		defer.resolve(data);
+            		$httpDefaultCache.removeAll();
         		}).error(function (data,status,headers,config){
             		defer.reject("could not add project");
         		});
@@ -75,6 +81,7 @@
 			            user:messages.user._id
 		            }
                	}).success(function (data, status, headers, config){
+               		$httpDefaultCache.removeAll();
             		defer.resolve(data);
         		}).error(function (data,status,headers,config){
             		defer.reject("could not add project");
@@ -98,6 +105,7 @@
 			            team : project.team
 		            }
 				}).success(function (data,status,headers,config){
+					$httpDefaultCache.removeAll();
 					defer.resolve(data);
 				}).error(function (data,status, headers, config){
 					defer.reject("could not edit project");
@@ -114,6 +122,7 @@
 					method: "DELETE",
 					url: projectsUrl + '/'+ project._id,
 				}).success(function (data, status, headers, config){
+					$httpDefaultCache.removeAll();
 					defer.resolve(data);
 				}).error(function (data, status, headers, config){
 					defer.reject("could not delete project");
