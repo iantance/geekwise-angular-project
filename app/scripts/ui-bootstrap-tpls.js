@@ -245,10 +245,15 @@ angular.module('ui.bootstrap.accordion', ['ui.bootstrap.collapse'])
     transclude:true,              // It transcludes the contents of the directive into the template
     replace: true,                // The element containing the directive will be replaced with the template
     templateUrl:'template/accordion/accordion-group.html',
-    scope:{ heading:'@' },        // Create an isolated scope and interpolate the heading attribute onto this scope
+    scope:{ heading:'@', editheading:'@' },        // Create an isolated scope and interpolate the heading attribute onto this scope
     controller: ['$scope', function($scope) {
       this.setHeading = function(element) {
         this.heading = element;
+        console.log(this.heading);
+      };
+      this.setEditHeading = function(element) {
+        this.editheading = element;
+        console.log(this.editheading);
       };
     }],
     link: function(scope, element, attrs, accordionCtrl) {
@@ -304,6 +309,26 @@ angular.module('ui.bootstrap.accordion', ['ui.bootstrap.collapse'])
   };
 })
 
+// Use accordion-edit between accordion-group and accordion-heading to provide HTML portion
+//  of heading that does not open accordion on clicks.
+.directive('accordionEdit', function() {
+  return {
+    restrict: 'EA',
+    transclude: true,   // Grab the contents to be used as the edit heading
+    template: '',       // In effect remove this element!
+    replace: true,
+    require: '^accordionGroup',
+    compile: function(element, attr, transclude) {
+      return function link(scope, element, attr, accordionGroupCtrl) {
+        // Pass the edit heading to the accordion-group controller
+        // so that it can be transcluded into the right place in the template
+        // [The second parameter to transclude causes the elements to be cloned so that they work in ng-repeat]
+        accordionGroupCtrl.setEditHeading(transclude(scope, function() {}));
+      };
+    }
+  };
+})
+
 // Use in the accordion-group template to indicate where you want the heading to be transcluded
 // You must provide the property on the accordion-group controller that will hold the transcluded element
 // <div class="accordion-group">
@@ -318,6 +343,22 @@ angular.module('ui.bootstrap.accordion', ['ui.bootstrap.collapse'])
         if ( heading ) {
           element.html('');
           element.append(heading);
+        }
+      });
+    }
+  };
+})
+
+// Use in the accordion-group template to indicate where the edit header will be transcluded. This
+// portion of the header does not open the group on clicks. Use: accordion-edit="editheading"
+.directive('accordionTranscludeedit', function() {
+  return {
+    require: '^accordionGroup',
+    link: function(scope, element, attr, controller) {
+      scope.$watch(function() { return controller[attr.accordionTranscludeedit]; }, function(editheading) {
+        if ( editheading ) {
+          element.html('');
+          element.append(editheading);
         }
       });
     }
@@ -3314,6 +3355,7 @@ angular.module("template/accordion/accordion-group.html", []).run(["$templateCac
   $templateCache.put("template/accordion/accordion-group.html",
     "<div class=\"panel panel-default\">\n" +
     "<div class=\"panel-heading\">\n" +
+    "<div class=\"accordion-edit\" accordion-transcludeedit=\"editheading\">{{editheading}}</div>\n" + 
     "  <h4 class=\"panel-title\">\n" +
     "    <a href=\"\" class=\"accordion-toggle\" ng-click=\"isOpen = !isOpen\" accordion-transclude=\"heading\">{{heading}}</a>\n" +
     "  </h4>\n" +

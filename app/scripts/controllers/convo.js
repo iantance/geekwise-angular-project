@@ -39,7 +39,13 @@ angular.module('myappApp')
     $scope.cancelEdit = function(conversation, i){
         $scope.editconvo[i] = false;
         conversation.subject = $scope.editsubject;
+        $scope.closeConvo(conversation);
     }
+
+    $scope.closeConvo=function(conversation){
+        conversation.open=false;
+        console.log(conversation);
+    };
 
     $scope.openEditMessage = function(message,i){
         $scope.messageedit[i] = !$scope.messageedit[i];
@@ -81,13 +87,23 @@ angular.module('myappApp')
         user:""
     };
 
+    $scope.deleteConvo= function(conversation){
+        var delPromise = Conversations.c_delete(conversation);
+        delPromise
+            .then(function(data){
+                $route.reload();
+            },function(){
+                console.log(reason);
+            });
+    };
+
     $scope.addMessage = function (message, projectId, convoId){
         var postPromise = Projects.postMessage(message, projectId, convoId);
         postPromise
             .then(function(data){
                 $route.reload();
             },function(){
-                console.log()
+                console.log(reason);
             });
     };
 

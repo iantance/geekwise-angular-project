@@ -8,7 +8,7 @@
   			<button class="btn btn-default" ng-click="editMessage(message)">save</button>
   		</div>
 	</div>
-		<p ng-show="!messageedit[$index]" ng-bind-html="message.message | linky"></p>
+		<p ng-show="!messageedit[$index]" ng-bind-html="message.message | linky:'_blank'"></p>
 		<button ng-show="!messageedit[$index]" class="btn btn-default" ng-click= "openEditMessage(message, $index)">edit</button>
 		<div>
 			<h5>user: {{message.user.lastName}}, {{message.user.firstName}}</h5>

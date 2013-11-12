@@ -20,7 +20,24 @@
 					Projects.clearCache();
 					defer.resolve(data);
 				}).error(function (data,status, headers, config){
-					defer.reject("could not edit project");
+					defer.reject("could not edit conversation");
+				});
+
+ 				return defer.promise;
+ 			},
+
+ 			c_delete: function(conversation){
+
+ 				var defer = $q.defer();
+
+				$http({
+					method: "DELETE",
+					url: conversationsUrl + '/'+ conversation._id
+				}).success(function (data,status,headers,config){
+					Projects.clearCache();
+					defer.resolve(data);
+				}).error(function (data,status, headers, config){
+					defer.reject("could not delete conversation");
 				});
 
  				return defer.promise;

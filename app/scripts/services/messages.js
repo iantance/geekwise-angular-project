@@ -1,6 +1,6 @@
 
  angular.module('myappApp')
- 	.factory("Messages", function($http, $q, AppConfigurations){
+ 	.factory("Messages", function($http, $q, AppConfigurations, Projects){
 
  		var messagesUrl = AppConfigurations.baseUrl + "/messages" 
 
@@ -17,6 +17,7 @@
 			            message:message.message
 		            }
 				}).success(function (data,status,headers,config){
+					Projects.clearCache();
 					defer.resolve(data);
 				}).error(function (data,status, headers, config){
 					defer.reject("could not edit project");
