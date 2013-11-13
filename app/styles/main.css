@@ -16,6 +16,10 @@
 	border-radius: 0;
 }
 
+.navbar-default {
+	border-color: #efeedb;
+}
+
 .container .navbar a, .navbar-default .navbar-nav>li>a {
 	color:#31c5bc;
 }
