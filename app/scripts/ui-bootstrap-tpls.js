@@ -249,11 +249,9 @@ angular.module('ui.bootstrap.accordion', ['ui.bootstrap.collapse'])
     controller: ['$scope', function($scope) {
       this.setHeading = function(element) {
         this.heading = element;
-        console.log(this.heading);
       };
       this.setEditHeading = function(element) {
         this.editheading = element;
-        console.log(this.editheading);
       };
     }],
     link: function(scope, element, attrs, accordionCtrl) {

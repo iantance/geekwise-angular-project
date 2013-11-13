@@ -3,20 +3,29 @@
 
 
 angular.module('myappApp')
-  .controller('ConvoCtrl', function ($scope, $q, Projects, Users, Messages, Conversations, $routeParams, $route) {
-    $scope.project = {conversations:[]};
+  .controller('ConvoCtrl', function ($scope, $q, Projects, Users, Messages, Conversations, $routeParams, $route, AppConfigurations) {
+    $scope.project = {conversations:[], team:[]};
     $scope.users = [];
-    $scope.space =' ';
     $scope.emptyConvo = true;
     $scope.editsubject = "";
     $scope.editmessage = "";
     $scope.editconvo = [];
     $scope.messageedit = [];
+    $scope.ADMIN_ID = AppConfigurations.ADMIN_ID;
+    $scope.loginuser = {_id:"0"};
+    $scope.teammember = false;
     var getPromise = Projects.get($routeParams.projectId);
     getPromise
         .then(function(data){
             $scope.project = data[0];
             $scope.emptyConvo = $scope.project.conversations.length === 0;
+            if ($scope.loginuser._id == $scope.ADMIN_ID){
+            $scope.project.team.push({
+                lastName:'ADMIN',
+                firstName:"ADMIN",
+                _id:$scope.ADMIN_ID
+            });
+        };
         }, function(){
             console.log(reason);
         });
@@ -31,31 +40,35 @@ angular.module('myappApp')
     };
 
 
+    $scope.$watch('project',function (newVal){
+        for (var i = $scope.project.team.length - 1; i >= 0; i--) {
+            $scope.teammember = ($scope.teammember || $scope.project.team[i]._id==$scope.loginuser._id);
+            console.log($scope.teammember);
+        };
+    });
+
+
     $scope.editSubject = function(conversation, i){
         $scope.editconvo[i] = true;
         $scope.editsubject = conversation.subject;
-    }
+    };
 
     $scope.cancelEdit = function(conversation, i){
         $scope.editconvo[i] = false;
         conversation.subject = $scope.editsubject;
-        $scope.closeConvo(conversation);
-    }
-
-    $scope.closeConvo=function(conversation){
         conversation.open=false;
-        console.log(conversation);
     };
+
 
     $scope.openEditMessage = function(message,i){
         $scope.messageedit[i] = !$scope.messageedit[i];
         $scope.editmessage = message.message;
-    }
+    };
 
     $scope.cancelEditMessage = function(message,i){
         $scope.messageedit[i] = !$scope.messageedit[i];
         message.message = $scope.editmessage;
-    }
+    };
 
     $scope.addConversation = function (conversation, projectId){
         console.log(conversation);

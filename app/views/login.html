@@ -1,0 +1,13 @@
+<div navbarlogin></div>
+<h1>Login</h1>
+
+<form class="form-horizontal loginform">
+	<div class="form-group"><label for="newloginuser" class="control-label col-lg-12">Select User</label>
+		<select class = 'form-control' ng-model = 'newloginuser' ng-options='user as [user.lastName, " "+user.firstName] for user in users'>
+		</select>
+		<button class="btn btn-default" ng-click="login(newloginuser)">Login</button>
+		<button class="btn btn-default" ng-click="logout()">Logout</button>
+	</div>
+</form>
+
+

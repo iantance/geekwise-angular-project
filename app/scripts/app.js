@@ -16,6 +16,22 @@ angular.module('myappApp', [
         templateUrl: "views/main.html",
         controller: 'MainCtrl'
       })
+      .when('/login', {
+        templateUrl:'views/login.html',
+        controller:"LoginCtrl",
+        resolve: {
+        users: function(Users, $q) {
+            var deferred = $q.defer();
+            Users.get('')
+            .then(function(data) {
+                deferred.resolve(data); 
+            }, function(errorData) {
+                deferred.reject(); 
+            });
+            return deferred.promise;
+            }
+        } 
+      })
       .when('/users', {
         templateUrl: 'views/users.html',
         controller: 'UsersCtrl'
@@ -119,5 +135,7 @@ angular.module("myappApp").animation(".slide",function(){
 // });
 
  angular.module("myappApp").value("AppConfigurations", {
-  baseUrl: 'http://geekwise-angularjs.herokuapp.com/iannance'
- })
+  baseUrl: 'http://geekwise-angularjs.herokuapp.com/iannance',
+  ADMIN_ID: '12345'
+ });
+ 

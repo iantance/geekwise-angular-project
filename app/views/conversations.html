@@ -1,19 +1,20 @@
-<div ng-include = "'navbar.html'"></div>
-<h1>Project: {{project.title}} <a tooltip="edit project" href="/#/projects/edit/{{project._id}}"><img src="images/glyphicons_150_edit.png"></a></h1>
+<div navbarlogin></div>
+<h1>Project: {{project.title}} <a ng-show="loginuser._id==ADMIN_ID" tooltip="edit project" href="/#/projects/edit/{{project._id}}"><img src="images/glyphicons_150_edit.png"></a></h1>
 <dl class="dl-horizontal">
 	<dt>Description:</dt> <dd>{{project.description}}</dd>
 	<dt>Status:</dt> <dd>{{project.status}}</dd>
 	<dt>Team:</dt>
 	<dd>
 		<ul class = "list-unstyled">
-			<li ng-repeat = "user in project.team">{{user.lastName}}, {{user.firstName}}</li>
+			<li ng-repeat = "user in project.team">{{user.lastName | filter:"user.lastName"}}, {{user.firstName}}</li>
 		</ul>
 	</dd>
 </dl>
 <accordion class="convogroup">
 	<accordion-group ng-repeat = "conversation in project.conversations" is-open="conversation.open">
+	
 		<accordion-edit>
-		<img tooltip="edit conversation" ng-click="$parent.editSubject($parent.conversation, $index)" src="images/glyphicons_150_edit.png"/>
+		<img ng-show="teammember" tooltip="edit conversation" ng-click="$parent.editSubject($parent.conversation, $index)" src="images/glyphicons_150_edit.png"/>
 		<div ng-show="editconvo[$index]">
 			<form class="form-group editconvoform">
 				<label for="editsubject" class="control-label"> Subject:</label>
@@ -73,24 +74,26 @@
 	</accordion-group>
 </accordion>
 <h2 class= "text-center" ng-show = "emptyConvo">No Conversations</h2>
+<div ng-show="teammember">
 <button class="btn btn-default showConvo" ng-click="addConvo=!addConvo">Start New Conversation</button>
-<div class="addconvo slide" ng-if="addConvo">
-	<form class="convoform form-horizontal" name= "convoform" novalidate>
-		<div class="form-group"><label class="control-label col-lg-12"for="subject">Subject</label>
-				<input class="form-control" type ="text" name = "subject" id= "subject" ng-model="newConversation.subject" placeholder="subject" required>
-				<span ng-show="convoform.subject.$error.required"> subject required</span>
-		</div>
-		<div>
-			<select ng-model = 'newConversation.messages.user' ng-options='user as [user.lastName, space+user.firstName] for user in project.team'>
-	  			<option value=''>- select commenter -</option>
-			</select>
-		</div>
-		<div class="form-group">
-			<label class="control-label"for="newMessage">Message</label>
-			<textarea ng-model = "newConversation.messages.message" class="form-control" rows = "5"></textarea>
-		</div>
-		<button ng-disabled = "newConversation.messages.message && !newConversation.messages.user" class = "btn btn-default" ng-disabled="convoform.$invalid" ng-click="addConversation(newConversation, project._id)">Add Conversation</button>
-	</form>
+	<div class="addconvo slide" ng-if="addConvo">
+		<form class="convoform form-horizontal" name= "convoform" novalidate>
+			<div class="form-group"><label class="control-label col-lg-12"for="subject">Subject</label>
+					<input class="form-control" type ="text" name = "subject" id= "subject" ng-model="newConversation.subject" placeholder="subject" required>
+					<span ng-show="convoform.subject.$error.required"> subject required</span>
+			</div>
+			<div>
+				<select ng-model = 'newConversation.messages.user' ng-options='user as [user.lastName, " "+user.firstName] for user in project.team'>
+		  			<option value=''>- select commenter -</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label class="control-label"for="newMessage">Message</label>
+				<textarea ng-model = "newConversation.messages.message" class="form-control" rows = "5"></textarea>
+			</div>
+			<button ng-disabled = "newConversation.messages.message && !newConversation.messages.user" class = "btn btn-default" ng-disabled="convoform.$invalid" ng-click="addConversation(newConversation, project._id)">Add Conversation</button>
+		</form>
+	</div>
 </div>
 
 

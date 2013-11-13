@@ -3,8 +3,7 @@
 
 
 angular.module('myappApp')
-  .controller('MainCtrl', function ($scope, $q, Users, Projects) {
-
+  .controller('MainCtrl', function ($scope, $q, Users, Projects, $cookies,$cookieStore) {
     var getPromise = Users.get('');
     getPromise
         .then(function(data){

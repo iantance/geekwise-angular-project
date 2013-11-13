@@ -188,7 +188,7 @@ span.span-right{
 	float:right;
 }
 
-.panel{
+.panel, .panel-group .panel{
 	border:none;
 }
 
@@ -205,19 +205,19 @@ span.span-right{
 }
 
 .panel textarea{
-	width:75%;
+	width:100%;
 	margin-bottom: 10px;
 }
 
 .panel-group .panel-heading+.panel-collapse .panel-body {
-	border-top: none;
+	border: none;
 }
 
 .panel-default>.panel-heading {
 	color:#31c5bc;
 	background-color: #efeedb;
 	border: none;
-	width: 75%;
+	width: 100%;
 }
 
 .panel select, .addconvo select {
@@ -267,7 +267,7 @@ span.span-right{
 	border:1px solid #31c5bc;
 	border-radius: 5px;
 	padding:3px;
-	width:75%;
+	width:100%;
 	overflow: hidden;
 	opacity:1;
 /*	-webkit-transition: opacity ease-in-out 1s;
@@ -294,13 +294,14 @@ span.span-right{
 
 .btn.showConvo{
 	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .addmessage .form-group{
 	position: relative;
 }
 .addmessage .form-group:nth-child(2){
-	left:55%;
+	left:79%;
 }
 
 .addmessage label{
@@ -312,7 +313,7 @@ span.span-right{
 }
 
 .messagegroup{
-	width: 75%;
+	width: 98%;
 	padding-left: 5px;
 	padding-right: 5px;
 	border: 1px solid #31c5bc;
@@ -342,6 +343,11 @@ span.span-right{
 .editconvoform .btn.delete{
 	position: relative;
 	left: 61%;
+}
+
+.accordion-edit label{
+	font-size: 16px;
+	font-weight: normal;
 }
 
 .ui-widget-content {
@@ -378,3 +384,14 @@ span.span-right{
 	visibility: hidden;
 }
 
+.loginform .btn{
+	position:relative;
+	right: 50%;
+	margin-top: 4%;
+}
+
+.imgbtn{
+	padding: 0;
+	border: none;
+	background-color: transparent;
+}

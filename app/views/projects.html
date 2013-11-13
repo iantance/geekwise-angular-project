@@ -1,5 +1,5 @@
-<div ng-include = "'navbar.html'"></div>
-<h1>Manage Projects</h1>
+<div navbarlogin></div>
+<h1>Projects</h1>
 
 <form class = "form-horizontal">
   <div class="form-group">
@@ -9,7 +9,7 @@
 <table  class="table table-hover">
 	<thead>
 		<tr>
-			<th><a tooltip="add project" href="/#/projects/add"><img src="images/glyphicons_190_circle_plus.png"></a></th>
+			<th><a ng-show="loginuser._id==ADMIN_ID" tooltip="add project" href="/#/projects/add"><img src="images/glyphicons_190_circle_plus.png"></a></th>
 			<th>Project Title</th>
 			<th>Description</th>
 			<th>Status</th>
@@ -19,7 +19,7 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat = "project in projects | filter:searchSort(query) | orderBy:'dueDate'">
-			<td><a tooltip="edit project" href="/#/projects/edit/{{project._id}}"><img src="images/glyphicons_150_edit.png"></a></td>
+			<td><a ng-show="$parent.loginuser._id==ADMIN_ID" tooltip="edit project" href="/#/projects/edit/{{project._id}}"><img src="images/glyphicons_150_edit.png"></a></td>
 			<td>{{project.title}}</td>
 			<td>{{project.description}}</td>
 			<td>{{project.status}}</td>

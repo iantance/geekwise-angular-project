@@ -11,7 +11,6 @@ angular.module('myappApp')
         }
 
         $scope.editView = false;
-        console.log($scope.editView);
 
         $scope.users = users;
  

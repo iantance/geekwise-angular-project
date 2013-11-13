@@ -6,7 +6,6 @@ angular.module('myappApp')
 				users: "="
 			},
 			controller:function($scope){
-				console.log($scope.team);
 				$scope.space = " ";
 				$scope.tempTeam = $scope.team;
 

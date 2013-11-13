@@ -1,9 +1,9 @@
-<div ng-include = "'navbar.html'"></div>
+<div navbarlogin></div>
 <header class = "editheader">
 	<h1 ng-show = "editView">Edit Project</h1>
 	<h1 ng-show = "!editView">Add Project</h1>
 	<a tooltip = "back to projects" href="/#/projects"><img src="images/glyphicons_210_left_arrow.png"></a>
-	<a tooltip="view project conversations" href="/#/projects/{{project._id}}/conversations"><img src="images/glyphicons_309_comments.png"></a>
+	<a ng-show = "editView" tooltip="view project conversations" href="/#/projects/{{project._id}}/conversations"><img src="images/glyphicons_309_comments.png"></a>
 </header>
 <div class = "clearfix"></div>
 <form name = "editForm" class = "form-horizontal editform projectform" novalidate>

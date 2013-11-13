@@ -3,7 +3,7 @@
 
 
 angular.module('myappApp')
-  .controller('ProjectsCtrl', function ($scope, $q, Projects) {
+  .controller('ProjectsCtrl', function ($scope, $q, Projects, $location, AppConfigurations) {
 
 
     var getPromise = Projects.get('')
@@ -14,8 +14,11 @@ angular.module('myappApp')
         },function(reason){
             console.log(reason);
         });
+    $scope.ADMIN_ID = AppConfigurations.ADMIN_ID;
+    $scope.loginuser = {_id:"0"};
 
     $scope.query = '';
+   
 
     $scope.searchSort = function (query){
     	return function (project){

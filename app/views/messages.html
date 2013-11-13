@@ -9,21 +9,21 @@
   		</div>
 	</div>
 		<p ng-show="!messageedit[$index]" ng-bind-html="message.message | linky:'_blank'"></p>
-		<button ng-show="!messageedit[$index]" class="btn btn-default" ng-click= "openEditMessage(message, $index)">edit</button>
+		<button ng-show="!messageedit[$index] && (loginuser._id==message.user._id || loginuser._id==ADMIN_ID)" class="btn btn-default" ng-click= "openEditMessage(message, $index)">edit</button>
 		<div>
 			<h5>user: {{message.user.lastName}}, {{message.user.firstName}}</h5>
 			<h6>last modified: {{message.modified | date:'medium'}}</h6>
 		</div>
 
 	</div>
-<form class = "addmessage form-horizontal">
+<form ng-show="teammember" class = "addmessage form-horizontal">
   	<div class="form-group">
   		<label for="message">add new message</label>
   	 	<textarea name = "message" id="message" ng-model = "newMessage.message" rows = "5"></textarea>
   	</div>
 	<div class="form-group">
 		<div>
-		<select ng-model = 'newMessage.user' ng-options='user as [user.lastName, space+user.firstName] for user in project.team'>
+		<select ng-model = 'newMessage.user' ng-options='user as [user.lastName, " "+user.firstName] for user in project.team'>
   			<option value=''>- select commenter -</option>
 		</select>
 		</div>

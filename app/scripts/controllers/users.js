@@ -3,7 +3,7 @@
 
 
 angular.module('myappApp')
-  .controller('UsersCtrl', function ($scope, $q, Users) {
+  .controller('UsersCtrl', function ($scope, $q, Users, AppConfigurations) {
 
     var getPromise = Users.get('')
 
@@ -14,6 +14,8 @@ angular.module('myappApp')
             console.log(reason);
         });
 
+    $scope.ADMIN_ID = AppConfigurations.ADMIN_ID;
+    $scope.loginuser = {_id:"0"};
     // $http({
     // 	method: 'GET',
     // 	url: 'http://geekwise-angularjs.herokuapp.com/iannance/users'
