@@ -5,11 +5,11 @@
 angular.module('myappApp')
   .controller('LoginCtrl', function ($scope, $q, users, $cookies, $cookieStore, $location, $route, AppConfigurations) {
     $scope.users = users;
-    $scope.users.push({
-        lastName:'ADMIN',
-        firstName:"",
-        _id:AppConfigurations.ADMIN_ID
-    });
+    // $scope.users.push({
+    //     lastName:'ADMIN',
+    //     firstName:"",
+    //     _id:AppConfigurations.ADMIN_ID
+    // });
 
     $scope.users.reverse();
     $scope.$watch('loginuser', function (newVal) {

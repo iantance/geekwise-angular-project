@@ -27,6 +27,13 @@ angular.module('myappApp')
 
     $scope.query = '';
 
+    $scope.noAdmin = function(){
+        return function (user){
+            return user._id != AppConfigurations.ADMIN_ID;
+        }
+    };
+
+
     $scope.searchSort = function (query){
     	return function (user){
             return user.lastName.toLowerCase().indexOf(query.toLowerCase()) != -1 ||

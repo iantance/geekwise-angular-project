@@ -136,6 +136,6 @@ angular.module("myappApp").animation(".slide",function(){
 
  angular.module("myappApp").value("AppConfigurations", {
   baseUrl: 'http://geekwise-angularjs.herokuapp.com/iannance',
-  ADMIN_ID: '12345'
+  ADMIN_ID: '5283fd13503bf90200000004'
  });
  

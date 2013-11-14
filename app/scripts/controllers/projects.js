@@ -19,6 +19,13 @@ angular.module('myappApp')
 
     $scope.query = '';
    
+   $scope.editable = function(project){
+        var inteam = false;
+        for (var i = project.team.length - 1; i >= 0; i--) {
+            inteam = inteam || $scope.loginuser._id == project.team[i]._id;
+         };
+         return inteam || $scope.loginuser._id==$scope.ADMIN_ID;
+   };
 
     $scope.searchSort = function (query){
     	return function (project){

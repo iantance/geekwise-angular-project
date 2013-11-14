@@ -8,7 +8,7 @@ angular.module('myappApp')
     getPromise
         .then(function(data){
             $scope.users_count = data.length;
-        },function(){
+        },function(reason){
             console.log(reason);
         });
 
@@ -16,9 +16,11 @@ angular.module('myappApp')
     getPromise
         .then(function(data){
             $scope.projects_count = data.length;
-        }, function(){
+        }, function(reason){
             console.log(reason);
         })
+
+
 
   });
 

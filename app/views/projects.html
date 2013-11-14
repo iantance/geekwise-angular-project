@@ -19,7 +19,7 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat = "project in projects | filter:searchSort(query) | orderBy:'dueDate'">
-			<td><a ng-show="$parent.loginuser._id==ADMIN_ID" tooltip="edit project" href="/#/projects/edit/{{project._id}}"><img src="images/glyphicons_150_edit.png"></a></td>
+			<td><a ng-show="editable(project)" tooltip="edit project" href="/#/projects/edit/{{project._id}}"><img src="images/glyphicons_150_edit.png"></a></td>
 			<td>{{project.title}}</td>
 			<td>{{project.description}}</td>
 			<td>{{project.status}}</td>

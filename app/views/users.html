@@ -17,8 +17,8 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat = "user in users | filter:searchSort(query) | orderBy:'lastName'">
-			<td><a ng-show="loginuser._id==ADMIN_ID" tooltip="edit user" href="/#/users/edit/{{user._id}}"><img src="images/glyphicons_150_edit.png"></a></td>
+		<tr ng-repeat = "user in users | filter:noAdmin() | filter:searchSort(query) | orderBy:'lastName'">
+			<td><a ng-show="loginuser._id==ADMIN_ID || loginuser._id==user._id" tooltip="edit user" href="/#/users/edit/{{user._id}}"><img src="images/glyphicons_150_edit.png"></a></td>
 			<td>{{user.lastName}}</td>
 			<td>{{user.firstName}}</td>
 			<td>{{user.nickName}}</td>

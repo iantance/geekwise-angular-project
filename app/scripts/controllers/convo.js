@@ -19,31 +19,28 @@ angular.module('myappApp')
         .then(function(data){
             $scope.project = data[0];
             $scope.emptyConvo = $scope.project.conversations.length === 0;
-            if ($scope.loginuser._id == $scope.ADMIN_ID){
-            $scope.project.team.push({
-                lastName:'ADMIN',
-                firstName:"ADMIN",
-                _id:$scope.ADMIN_ID
-            });
-        };
+            // if ($scope.loginuser._id == $scope.ADMIN_ID){
+            // $scope.project.team.push({
+            //     lastName:'ADMIN',
+            //     firstName:"ADMIN",
+            //     _id:$scope.ADMIN_ID
+            // });
+        // };
         }, function(){
             console.log(reason);
         });
 
     $scope.emptyConvo = $scope.project.conversations.length === 0;
-    $scope.newConversation = {
-        subject:"",
-        messages:{
-            user:"",
-            message:""
+
+    $scope.noAdmin = function(){
+        return function (user){
+            return user._id != $scope.ADMIN_ID;
         }
     };
-
 
     $scope.$watch('project',function (newVal){
         for (var i = $scope.project.team.length - 1; i >= 0; i--) {
             $scope.teammember = ($scope.teammember || $scope.project.team[i]._id==$scope.loginuser._id);
-            console.log($scope.teammember);
         };
     });
 
@@ -95,10 +92,23 @@ angular.module('myappApp')
             });
     };
 
+    $scope.newConversation = {
+        subject:"",
+        messages:{
+            user:"",
+            message:""
+        }
+    };
+
     $scope.newMessage = {
         message:"",
         user:""
     };
+
+    $scope.$watch("loginuser",function (newVal){
+        $scope.newMessage.user = newVal;
+        $scope.newConversation.user = newVal;
+    })
 
     $scope.deleteConvo= function(conversation){
         var delPromise = Conversations.c_delete(conversation);

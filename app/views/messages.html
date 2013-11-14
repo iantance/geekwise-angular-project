@@ -22,11 +22,13 @@
   	 	<textarea name = "message" id="message" ng-model = "newMessage.message" rows = "5"></textarea>
   	</div>
 	<div class="form-group">
-		<div>
+		<label class="control-label">User:</label>
+			<p>{{loginuser.lastName}}, {{loginuser.firstName}}</p>
+<!-- 		<div>
 		<select ng-model = 'newMessage.user' ng-options='user as [user.lastName, " "+user.firstName] for user in project.team'>
   			<option value=''>- select commenter -</option>
 		</select>
-		</div>
+		</div> -->
   		<button class = "btn btn-default" ng-disabled ="!newMessage.user || !newMessage.message" ng-click="addMessage(newMessage, project._id, conversation._id)">add message</button>
   	</div>
 </form>

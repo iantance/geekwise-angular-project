@@ -1,5 +1,5 @@
 angular.module('myappApp')	
-	.directive("teamlist", function(){
+	.directive("teamlist", function(AppConfigurations){
 		return{
 			scope:{
 				team: "=",
@@ -9,8 +9,11 @@ angular.module('myappApp')
 				$scope.space = " ";
 				$scope.tempTeam = $scope.team;
 
-
-
+				$scope.noAdmin = function(){
+        			return function (user){
+            			return user._id != AppConfigurations.ADMIN_ID;
+        			}
+    			};
 				$scope.teamToIds = function(){
 					$scope.team = [];
 	  				for (var i = $scope.tempTeam.length-1; i>=0; i--){
@@ -25,7 +28,7 @@ angular.module('myappApp')
 					$scope.tempTeam.push(member);
 					$scope.team.push(member._id);
 				}
-				// $scope.teamToIds();
+
 	  			};
 
 		  		$scope.removeMembers = function(){
@@ -39,11 +42,12 @@ angular.module('myappApp')
 		  		};
 
 		  	},
-			template: "<select class = 'form-control' ng-model = 'member' ng-options='user as [user.lastName, space+user.firstName] for user in users'>"+
+			template: "<select class = 'form-control' ng-model = 'member' ng-options='user as [user.lastName, space+user.firstName] for user in users | filter:noAdmin()'>"+
 						"<option value=''>- select new member -</option></select>" +
 					        "<button ng-click ='addToTeam(member)' class='btn btn-default add' type='button'>Add Member</button>" +
+					    "<label class='form-label'>members:</label>"+
 						"<ul>"+
-							"<li ng-repeat = 'member in tempTeam'>"+
+							"<li ng-repeat = 'member in tempTeam | filter:noAdmin()'>"+
 							"<input type = 'checkbox' ng-model= 'member.remove'/>{{member.lastName}}, {{member.firstName}}</li>"+
 							"<button class='btn btn-default remove' ng-click='removeMembers()'>Remove Selected</button>"+
 						"</ul>"

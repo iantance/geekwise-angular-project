@@ -8,14 +8,13 @@
     $scope.editView = true;
 
     $scope.save = function(project){
-        console.log(project);
 
         var putPromise = Projects.put(project);
 
         putPromise
         .then(function(data){
             $location.path('/projects');
-        },function(){
+        },function(reason){
             console.log(reason);
         })
 

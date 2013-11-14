@@ -6,7 +6,7 @@
 	<dt>Team:</dt>
 	<dd>
 		<ul class = "list-unstyled">
-			<li ng-repeat = "user in project.team">{{user.lastName | filter:"user.lastName"}}, {{user.firstName}}</li>
+			<li ng-repeat = "user in project.team | filter:noAdmin()">{{user.lastName}}, {{user.firstName}}</li>
 		</ul>
 	</dd>
 </dl>
@@ -82,11 +82,13 @@
 					<input class="form-control" type ="text" name = "subject" id= "subject" ng-model="newConversation.subject" placeholder="subject" required>
 					<span ng-show="convoform.subject.$error.required"> subject required</span>
 			</div>
-			<div>
+			<label class="control-label">User:</label>
+				<p>{{loginuser.lastName}}, {{loginuser.firstName}}</p>
+<!-- 			<div>
 				<select ng-model = 'newConversation.messages.user' ng-options='user as [user.lastName, " "+user.firstName] for user in project.team'>
 		  			<option value=''>- select commenter -</option>
 				</select>
-			</div>
+			</div> -->
 			<div class="form-group">
 				<label class="control-label"for="newMessage">Message</label>
 				<textarea ng-model = "newConversation.messages.message" class="form-control" rows = "5"></textarea>

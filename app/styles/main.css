@@ -174,8 +174,14 @@ select.form-control{
 }
 
 .teamlist ul{
-	margin: 20px 0px 0px 17px;
+	margin: 5px 0px 0px 17px;
 	list-style: none;
+}
+
+.teamlist label{
+	position: relative;
+	right: 50%;
+	margin: 5px 0px 0px 0px;
 }
 
 .teamlist ul li{
