@@ -35,42 +35,7 @@
 				<span ng-show="!editconvo[$index]" tooltip="view messages" class = "span-right">{{conversation.messages.length}} messages</span>
 			
 		</accordion-heading>
-		<div ng-hide="">
-			<div messages></div>
-<!-- 			  <div ng-hide="editconvo[$parent.$index]">				
-				<div class= "messagegroup" ng-repeat="message in conversation.messages">
-			  		<h4>message {{$index + 1}}</h4>
-			  		<div ng-show="edit">
-				  		<textarea ng-model = "message.message"></textarea>
-				  		<div>
-				  			<button class="btn btn-default" ng-click="edit = !edit">cancel</button>
-				  			<button class="btn btn-default" ng-click="editMessage(message)">save</button>
-				  		</div>
-					</div>
-			  		<p ng-show="!edit" ng-bind-html="message.message | linky"></p>
-			  		<button ng-show="!edit" class="btn btn-default" ng-click= "edit = !edit">edit</button>
-			  		<div>
-			  			<h5>user: {{message.user.lastName}}, {{message.user.firstName}}</h5>
-			  			<h6>last modified: {{message.modified | date:'medium'}}</h6>
-			  		</div>
-		
-			  	</div>
-				<form class = "addmessage form-horizontal">
-				  	<div class="form-group">
-				  		<label for="message">add new message</label>
-				  	 	<textarea name = "message" id="message" ng-model = "newMessage.message" rows = "5"></textarea>
-				  	</div>
-					<div class="form-group">
-						<div>
-						<select ng-model = 'newMessage.user' ng-options='user as [user.lastName, space+user.firstName] for user in project.team'>
-				  			<option value=''>- select commenter -</option>
-						</select>
-						</div>
-				  		<button class = "btn btn-default" ng-disabled ="!newMessage.user || !newMessage.message" ng-click="addMessage(newMessage, project._id, conversation._id)">add message</button>
-				  	</div>
-			  	</form>
-			  </div> -->
-		</div>
+		<div ng-include="'views/messages.html'"></div>
 	</accordion-group>
 </accordion>
 <h2 class= "text-center" ng-show = "emptyConvo">No Conversations</h2>
@@ -84,11 +49,7 @@
 			</div>
 			<label class="control-label">User:</label>
 				<p>{{loginuser.lastName}}, {{loginuser.firstName}}</p>
-<!-- 			<div>
-				<select ng-model = 'newConversation.messages.user' ng-options='user as [user.lastName, " "+user.firstName] for user in project.team'>
-		  			<option value=''>- select commenter -</option>
-				</select>
-			</div> -->
+
 			<div class="form-group">
 				<label class="control-label"for="newMessage">Message</label>
 				<textarea ng-model = "newConversation.messages.message" class="form-control" rows = "5"></textarea>

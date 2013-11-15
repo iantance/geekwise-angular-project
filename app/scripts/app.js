@@ -123,16 +123,7 @@ angular.module("myappApp").animation(".slide",function(){
     }
 });
 
-// angular.module("myappApp").animation(".slide2",function(){
-//     return{
-//       removeClass:function(element, "closed", done){
-//         TweenMax.from(element, 0.5,{height:0, onComplete:done})
-//       },
-//       addClass:function(element, "closed", done){
-//         TweenMax.to(element, 0.5,{height:0, onComplete:done})
-//       }
-//     }
-// });
+
 
  angular.module("myappApp").value("AppConfigurations", {
   baseUrl: 'http://geekwise-angularjs.herokuapp.com/iannance',

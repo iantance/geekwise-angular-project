@@ -20,6 +20,8 @@
 
     }
 
+
+
     $scope.deleteProject = function(project){
 
         var deletePromise = Projects.p_delete(project)

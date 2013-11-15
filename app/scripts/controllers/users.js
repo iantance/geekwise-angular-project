@@ -16,14 +16,6 @@ angular.module('myappApp')
 
     $scope.ADMIN_ID = AppConfigurations.ADMIN_ID;
     $scope.loginuser = {_id:"0"};
-    // $http({
-    // 	method: 'GET',
-    // 	url: 'http://geekwise-angularjs.herokuapp.com/iannance/users'
-    // }).success(function (data, status, headers, config){
-    // 	$scope.users = data;
-    // }).error(function (data, status, headers, config){
-    // 	console.warn("couldn't retreive users", status);
-    // });
 
     $scope.query = '';
 

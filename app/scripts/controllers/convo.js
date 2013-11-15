@@ -19,13 +19,6 @@ angular.module('myappApp')
         .then(function(data){
             $scope.project = data[0];
             $scope.emptyConvo = $scope.project.conversations.length === 0;
-            // if ($scope.loginuser._id == $scope.ADMIN_ID){
-            // $scope.project.team.push({
-            //     lastName:'ADMIN',
-            //     firstName:"ADMIN",
-            //     _id:$scope.ADMIN_ID
-            // });
-        // };
         }, function(){
             console.log(reason);
         });
